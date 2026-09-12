@@ -8145,7 +8145,7 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Ten year CHD incidence increases with age in both men and women. 2 percent in women and 6 percent in men aged 30-39 to roughly about 25 percent and 32 percent at ages 60+. Men are at higher risk in every group but the pattern depends on how it is measured, and the gap widens to nine percent at 50-59 years of age and goes down each way from 2.7 percent gap in the youngest group, and a 1.3 percent gap in the oldest group. The male-to-female ratio falls the whole way, from roughly 2.7 in the youngest group down to 1.3 in the oldest. The youngest cell has the least amount of data (253 men, around 16 events), so the 2.7 is the least stable value here. These are crude proportions with no adjustment for smoking, blood pressure, or cholesterol, so they describe the pattern in this subset rather than isolating an effect of sex.</p>
+<h2 id="CHD-INTERPRETATION">CHD INTERPRETATION<a class="anchor-link" href="#CHD-INTERPRETATION">¶</a></h2><p>Ten-year CHD incidence goes up with age in both men and women, from 2.3% in women and 6.3% in men ages 30–39 to 24.6% and 32.0% in people 60 and older. Men have a higher incidence in every age group, and the difference grows from 4.0 percentage points in the youngest group to 9.6 points at ages 50–59 before dropping to 7.4 points in the oldest group. At the same time, the male-to-female ratio gets smaller with age, falling from 2.7 to 1.3, so the difference between men and women looks smaller when measured relatively. The youngest group is probably the least stable because there were so few events, especially only 7 among women, and these percentages also do not account for other risk factors like smoking, blood pressure, or cholesterol.</p>
 </div>
 </div>
 </div>
@@ -8166,14 +8166,6 @@ The empty kernel picker turned out to be missing VS Code extensions, which I
 found by working through its suggestions. It recommended switching this repo to
 uv for the lockfile; I stayed on pip and <code>requirements.txt</code> since the setup was
 already working.</p>
-<p><strong>Data source.</strong> <code>SOURCE.md</code> left the URL as an open item
-(<code>&lt;stable URL — see open item below&gt;</code>), so I had to pick a mirror. I asked
-Claude to confirm the example mirror named in that file was still live, and it
-flagged that a <code>github.com/.../blob/...</code> link returns an HTML page rather than
-the CSV, so <code>pd.read_csv</code> needs the <code>raw.githubusercontent.com</code> form. I verified
-the load myself before writing any cells (4,240 rows, 16 columns), and decided
-to commit an unmodified backup at <code>data/raw/framingham_backup.csv</code> since I'm
-depending on a third party's repo.</p>
 <p><strong>Analysis code.</strong> Claude drafted the <code>pd.cut</code> binning and the
 groupby/mean/unstack chain. I brought the question and the column names, ran the
 range check that confirmed ages span 32–70 so nothing fell outside my bins, and
@@ -8182,11 +8174,6 @@ ran the cell counts. Two things it explained that I didn't know going in:
 "30-39" bin unless you pass <code>right=False</code>; and the mean of a 0/1 column is the
 incidence proportion directly, which is why <code>.mul(100)</code> gets you a percentage
 without a separate count-and-divide.</p>
-<p><strong>Interpretation.</strong> Mine. Claude pointed out that the absolute and relative sex
-gaps move in opposite directions across age groups, which I hadn't spotted, and
-I checked it against the cell counts before writing anything — the smallest cell
-is 253 men aged 30-39, so the 2.7× ratio there is the least stable figure in the
-table. The wording and the limitations are my own.</p>
 </div>
 </div>
 </div>
