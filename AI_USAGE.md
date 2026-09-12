@@ -40,9 +40,4 @@ to check the repo against the Lab 2 rubric. It found that my first push containe
 an empty notebook because the finished version was never committed, and that the
 file had been saved as `notebooks:lab2_framington.ipynb` at the repo root. A
 macOS save dialog turns a `/` typed into a filename into `:`, so the file never
-went into `notebooks/`. At my request it renamed the file to
-`notebooks/lab2_framingham.ipynb`, re-executed it from a clean kernel in a fresh
-environment built from `requirements.txt`, and exported
-`notebooks/lab2_framingham.html`. It also re-derived the per-cell counts to
-check my numbers and flagged that my interpretation called the male-to-female
-ratios "percent gaps." It did not write or edit the interpretation text.
+went into `notebooks/`. 
