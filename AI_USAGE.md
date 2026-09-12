@@ -34,3 +34,15 @@ gaps move in opposite directions across age groups, which I hadn't spotted, and
 I checked it against the cell counts before writing anything — the smallest cell
 is 253 men aged 30-39, so the 2.7x ratio there is the least stable figure in the
 table. The wording and the limitations are my own.
+
+**Pre-submission check and repo cleanup.** I asked Claude Code (Claude Opus 5)
+to check the repo against the Lab 2 rubric. It found that my first push contained
+an empty notebook because the finished version was never committed, and that the
+file had been saved as `notebooks:lab2_framington.ipynb` at the repo root. A
+macOS save dialog turns a `/` typed into a filename into `:`, so the file never
+went into `notebooks/`. At my request it renamed the file to
+`notebooks/lab2_framingham.ipynb`, re-executed it from a clean kernel in a fresh
+environment built from `requirements.txt`, and exported
+`notebooks/lab2_framingham.html`. It also re-derived the per-cell counts to
+check my numbers and flagged that my interpretation called the male-to-female
+ratios "percent gaps." It did not write or edit the interpretation text.
