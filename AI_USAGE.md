@@ -41,3 +41,33 @@ an empty notebook because the finished version was never committed, and that the
 file had been saved as `notebooks:lab2_framington.ipynb` at the repo root. A
 macOS save dialog turns a `/` typed into a filename into `:`, so the file never
 went into `notebooks/`. 
+
+**Extra credit: mixed-language notebook.** I asked Claude Code (Claude Opus 5)
+to build `notebooks/mixed_language_extra_credit.ipynb`. It chose rpy2's `%%R`
+cell magic over reticulate because this repo already runs on Jupyter and a
+pip venv, so staying with a Python kernel meant no new toolchain. What it did
+to get it working:
+
+- Installed `rpy2` into the existing `.venv` with pip and regenerated
+  `requirements.txt`, which added rpy2, rpy2-rinterface, rpy2-robjects and
+  tzlocal. R 4.6.0 was already installed.
+- The prebuilt rpy2 wheel is compiled against R 4.5, so loading it on R 4.6
+  printed a failed "API mode" import before it fell back to "ABI mode". The
+  notebook sets `RPY2_CFFI_MODE=ABI` before loading the extension, which skips
+  that attempt and works with any R version.
+- The data goes Python → R → Python. pandas loads and bins the data. `%%R -i`
+  passes the data frame to R, which fits the logistic models with `glm()`.
+  `%%R -o` sends the odds-ratio table, the interaction p-value and the fitted
+  cell probabilities back to Python as pandas objects, and matplotlib plots
+  them.
+- Bug found on the first run: `pd.cut` makes an *ordered* categorical, and
+  rpy2 turns that into an R ordered factor. `glm()` then uses polynomial
+  contrasts, so the "age group" rows were linear/quadratic/cubic trend terms
+  instead of odds ratios against 30-39. It printed plausible-looking numbers
+  with no error. The fix was one line in R (`factor(..., ordered = FALSE)`).
+  It also added an assert on the term names so the Python side fails loudly
+  if that happens again.
+- As a check that the data crossed intact, the notebook compares the R
+  interaction model's fitted probabilities with pandas' crude rates from the
+  main lab. The model is saturated, so they have to match, and they do to
+  within 1e-8.

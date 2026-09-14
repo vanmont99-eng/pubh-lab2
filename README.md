@@ -22,9 +22,19 @@ jupyter nbconvert --to html --execute notebooks/lab2_framingham.ipynb
 
 Built on Python 3.12.14.
 
+### Extra credit notebook (Python + R)
+notebooks/mixed_language_extra_credit.ipynb also needs R installed (built on
+R 4.6.0, base R only, no extra R packages). It uses the rpy2 package from
+requirements.txt, which finds R through `R RHOME` on your PATH. Run it the
+same way:
+jupyter nbconvert --to html --execute notebooks/mixed_language_extra_credit.ipynb
+
 ## Contents
 - notebooks/lab2_framingham.ipynb — analysis notebook
 - notebooks/lab2_framingham.html — rendered export
+- notebooks/mixed_language_extra_credit.ipynb — extra credit: pandas prep →
+  R logistic regression (rpy2 `%%R`) → results back in Python
+- notebooks/mixed_language_extra_credit.html — rendered export
 - data/raw/framingham_backup.csv — unmodified backup (not used by the notebook)
 - requirements.txt
 - AI_USAGE.md
