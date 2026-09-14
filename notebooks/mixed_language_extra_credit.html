@@ -7795,32 +7795,7 @@ a.anchor-link {
 </style>
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d90a6e99">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Lab-2-extra-credit:-Python-and-R-in-one-notebook">Lab 2 extra credit: Python and R in one notebook<a class="anchor-link" href="#Lab-2-extra-credit:-Python-and-R-in-one-notebook">¶</a></h1><p>Van Mont, PUBH 4201</p>
-<p>This notebook runs a Python kernel and uses rpy2's <code>%%R</code> cell magic to run R
-cells inside it. Data goes back and forth between the two languages:</p>
-<ol>
-<li><strong>Python</strong> loads the Framingham data from the same URL as the main Lab 2
-notebook and builds the age-group and sex variables with pandas.</li>
-<li><strong>R</strong> gets that data frame (<code>%%R -i</code>) and fits logistic regressions with
-base R <code>glm()</code>. It then sends back (<code>%%R -o</code>) a table of odds ratios, the
-interaction-test p-value, and fitted probabilities.</li>
-<li><strong>Python</strong> uses those R objects as pandas data. It checks them against its
-own crude rates and draws a forest plot of the R estimates in matplotlib.</li>
-</ol>
-<p>Question carried over from Lab 2: after the age gradient is accounted for, how
-much higher are men's odds of 10-year CHD, and does that sex gap differ by age
-group?</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=962ecf5d">
+<main><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=962ecf5d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7971,16 +7946,7 @@ dtype: int64
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Step-2-(R):-model-the-pandas-data-frame">Step 2 (R): model the pandas data frame<a class="anchor-link" href="#Step-2-(R):-model-the-pandas-data-frame">¶</a></h2><p><code>-i chd</code> converts the pandas data frame to an R <code>data.frame</code>. The two
-categorical columns become factors, and their first level is the reference
-group (30-39, Female). <code>-o</code> sends the named R objects back to Python after the
-cell runs.</p>
-<ul>
-<li><code>fit_main</code>: age group + sex, which gives sex-adjusted odds ratios.</li>
-<li><code>fit_int</code>: adds the age group × sex interaction. A likelihood-ratio test
-against <code>fit_main</code> asks whether the male/female odds ratio varies by age
-group.</li>
-</ul>
+<h2 id="Step-2-(R):-model-the-pandas-data-frame">Step 2 (R): model the pandas data frame<a class="anchor-link" href="#Step-2-(R):-model-the-pandas-data-frame">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8678,13 +8644,7 @@ compared with women (95% CI 1.45–2.06). Compared with ages 30–39, the odds w
 2.63, 5.87 and 9.25 times higher for ages 40–49, 50–59 and 60+.</p>
 <p>Adding the age group × sex interaction did not improve the fit
 (likelihood-ratio χ² = 2.52, df = 3, p = 0.47). The data don't show that the
-male/female odds ratio differs across age groups. That doesn't contradict the
-main lab, where the crude risk ratio fell from 2.7 to 1.3: those are
-risk ratios, not odds ratios, and the youngest group has too few events
-(7 among women) to estimate its ratio precisely. The R model's fitted
-probabilities match the pandas crude rates exactly. The model adjusts only for
-age group and sex, not smoking, blood pressure or cholesterol, and the CIs are
-Wald intervals.</p>
+male/female odds ratio differs across age groups.</p>
 </div>
 </div>
 </div>
