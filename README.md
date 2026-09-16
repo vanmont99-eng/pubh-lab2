@@ -24,10 +24,10 @@ Built on Python 3.12.14.
 
 ### Extra credit notebook (Python + R)
 notebooks/mixed_language_extra_credit.ipynb also needs R installed (built on
-R 4.6.0, base R only, no extra R packages). It uses the rpy2 package, which
-finds R through `R RHOME` on your PATH. rpy2 is kept out of requirements.txt so
-the main notebook installs without R. With R installed:
-pip install -r requirements-extra.txt
+R 4.6.0, base R only, no extra R packages). It uses the rpy2 package from
+requirements.txt, which finds R through `R RHOME` on your PATH. rpy2 installs
+without R, so the main notebook still runs on a machine with no R. Run it the
+same way:
 jupyter nbconvert --to html --execute notebooks/mixed_language_extra_credit.ipynb
 
 ## Contents
@@ -37,6 +37,5 @@ jupyter nbconvert --to html --execute notebooks/mixed_language_extra_credit.ipyn
   R logistic regression (rpy2 `%%R`) → results back in Python
 - notebooks/mixed_language_extra_credit.html — rendered export
 - data/raw/framingham_backup.csv — unmodified backup (not used by the notebook)
-- requirements.txt — main notebook
-- requirements-extra.txt — adds rpy2 for the extra credit notebook
+- requirements.txt
 - AI_USAGE.md
